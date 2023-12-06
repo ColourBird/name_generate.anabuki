@@ -3,7 +3,7 @@ $username = "ユーザー名"; // データベースのユーザー名
 $password = "パスワード"; // データベースのパスワード
 $dbname = "データベース名"; // 使用するデータベース名
 
-/ データベースに接続する
+// データベースに接続する
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // 接続エラーのチェック
