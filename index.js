@@ -41,3 +41,27 @@ let users = [
     }
     return false;
   }
+
+
+        function getRandomName(category) {
+            const categories = {
+                'human': ['Alice', 'Bob', 'Charlie'], // 人間の名前の例
+                'dog': ['Rex', 'Buddy', 'Max'], // 犬の名前の例
+                'car': ['Corolla', 'Civic', 'Accord'] // 車の名前の例
+            };
+
+            const names = categories[category];
+            if (names) {
+                const randomIndex = Math.floor(Math.random() * names.length);
+                return names[randomIndex];
+            }
+            return '名前が見つかりません';
+        }
+
+        document.getElementById('start').addEventListener('click', function () {
+            const selectElement = document.getElementById('select');
+            const category = selectElement.value;
+            const generatedName = getRandomName(category);
+
+            document.getElementById('generatedName').textContent = generatedName;
+        });
