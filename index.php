@@ -1,15 +1,32 @@
-$servername = "localhost"; // データベースのホスト名
-$username = "ユーザー名"; // データベースのユーザー名
-$password = "パスワード"; // データベースのパスワード
-$dbname = "データベース名"; // 使用するデータベース名
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device - width, initial - scale = 1, shrink-to-fit = no">  
+        <!-- bootstrap CSS -->  
+        <link rel="stylesheet" href="css/style.css">
+        <title></title>
+    </head>
+    <body>
+        <main>
 
-// データベースに接続する
-$conn = new mysqli($servername, $username, $password, $dbname);
+        <?php
+        #DB接続
+        try{
+            $db = new PDO("mysql:dbname=mydb2;host=127.0.0.1;charset=utf8","root",""); 
+        }catch (PDOException $e) {
+            echo "DB接続エラー".$e->getMessage();
+            die();
+        };
+        ?>
+        <form>
+        
+        <input type="submit" value="登録" formaction="http://localhost/nameseisei/PHP_INSERT.php">
 
-// 接続エラーのチェック
-if ($conn->connect_error) {
-    die("接続エラー: " . $conn->connect_error);
-}
+       </form>
+       </main>
+    </body>
+</html>
 
 // ペットの名前を取得するSQLクエリ
 $sql = "SELECT * FROM pets";
@@ -25,3 +42,4 @@ if ($result->num_rows > 0) {
 } else {
     echo "データがありません";
 }
+
