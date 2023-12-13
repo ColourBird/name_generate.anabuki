@@ -14,7 +14,7 @@
             echo "DB接続エラー".$e->getMessage();
             die();
         };
-    
+        $result = $mysql -> query("select * from favorites");
     ?>
 </body>
 </html>
