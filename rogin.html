@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>ログイン画面</title>
 </head>
 <body>
@@ -22,22 +23,37 @@
         <a href="cleate_account.html" class="newaccount">新規登録</a>
     </div>
 
-    <style>
-        h1{
-            text-align: center;
+     <script>
+        function login() {
+            const loginId = document.getElementById('loginId').value;
+            const password = document.getElementById('password').value;
+
+            // サーバーにPOSTリクエストを送信
+            fetch('URL_ここにAPIのエンドポイント', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: loginId,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const loginResult = data.data.true; 
+
+                if (loginResult === 'true') {
+                    alert('ログイン成功！');
+                    
+                } else {
+                    alert('ログイン失敗！IDまたはパスワードが正しくありません。');
+                }
+            })
+            .catch(error => {
+                console.error('エラー:', error);
+            });
         }
-        div{
-            text-align: center;
-            
-        }
-        p{
-            margin:0 0 0;
-            font-weight: bold;
-        }
-        .newaccount{
-            color: white;
-            background-color: blue;
-            font-weight: bold;
-    </style>
+    </script>
 </body>
 </html>
