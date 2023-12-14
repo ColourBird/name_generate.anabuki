@@ -20,7 +20,7 @@
     </div>
     <br>
     <div>
-    <button type="submit">ログイン</button>
+    <input type="submit" value="ログイン" formaction="http://localhost/nameseisei/menu.html ">
     </div>
     <br>
     <div>
@@ -32,7 +32,7 @@
             const loginId = document.getElementById('loginId').value;
             const password = document.getElementById('password').value;
 
-            // サーバーにPOSTリクエストを送信
+            // POST
             fetch('URL_ここにAPIのエンドポイント', {
                 method: 'POST',
                 headers: {
@@ -75,6 +75,7 @@
             color: white;
             background-color: blue;
             font-weight: bold;
+        }
     </style>
 </body>
 </html>
