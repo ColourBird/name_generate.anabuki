@@ -11,13 +11,47 @@
         <main>
 
         <?php
-        #DB接続
-        try{
-            $db = new PDO("mysql:dbname=mydb2;host=127.0.0.1;charset=utf8","root",""); 
-        }catch (PDOException $e) {
-            echo "DB接続エラー".$e->getMessage();
-            die();
-        };
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['name'])) {
+            $category = $_GET['name'];
+
+            try {
+                $db = new PDO("mysql:dbname=mydb2;host=127.0.0.1;charset=utf8", "root", ""); 
+            } catch (PDOException $e) {
+                echo "DB接続エラー".$e->getMessage();
+                die();
+            };
+
+            switch ($category) {
+                case 'pet':
+                    $sql = "SELECT name FROM pets ORDER BY RAND() LIMIT 1";
+                    break;
+                case 'people':
+                    $sql = "SELECT family, last FROM people ORDER BY RAND() LIMIT 1";
+                    break;
+                case 'car':
+                    $sql = "SELECT company, car FROM cars ORDER BY RAND() LIMIT 1";
+                    break;
+                default:
+                    echo "無効なカテゴリ";
+                    break;
+            }
+
+            if (isset($sql)) {
+                $stmt = $db->query($sql);
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+                if ($row) {
+                    echo "<p>カテゴリ: $category</p>";
+                    echo "<p>データ: ";
+                    foreach ($row as $key => $value) {
+                        echo "$key: $value, ";
+                    }
+                    echo "</p>";
+                } else {
+                    echo "データが見つかりません";
+                }
+            }
+        }
         ?>
         <form>
         
@@ -28,18 +62,5 @@
     </body>
 </html>
 
-// ペットの名前を取得するSQLクエリ
-$sql = "SELECT * FROM pets";
 
-// クエリを実行して結果を取得
-$result = $conn->query($sql);
-
-// 結果を処理する（例：取得したペット名の表示）
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "ペット名: " . $row["pet_name"] . "<br>";
-    }
-} else {
-    echo "データがありません";
-}
 
