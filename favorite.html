@@ -1,13 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お気に入り画面</title>
 </head>
 <body>
-<h1>お気に入りページ</h1>
-    <a href="favorite.html">戻る</a>
+    <h1>お気に入り</h1>
+    <a href="menu.html">↩戻る</a>
+    <div class="favorite_log_title">
+        お気に入り一覧
+    </div>
+    <div class="log">
+        <p id="target"></p>
+    </div>
+
+
+    <style>
+        h1{
+            text-align: center;
+            margin: 0%;
+        }
+        div{
+            text-align: center;
+        }
+        .favorite_log_title{
+            background: gainsboro; 
+            border: 1px solid gainsboro; 
+            
+        }
+        .log{
+            border: 1px solid gainsboro;
+            font-size: 100%; 
+            padding: auto;
+        }
+        html {
+            background-color: black; 
+        } 
+        body {
+            margin: 0% 20%;  
+            padding: 10px;   
+            background-color: white;
+            height: 100vh
+        }
+        p{
+            margin: 0%;
+        }
+    </style>
     <?php include 'favorite.php'; ?>
 </body>
 </html>
